@@ -29,8 +29,9 @@ public class PlayerControl : MonoBehaviour
 
 	void Update()
 	{
-		// If the jump button is pressed and the player is grounded then the player should jump.
-		if(Input.GetButtonDown("Jump") && grounded)
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        // If the jump button is pressed and the player is grounded then the player should jump.
+        if (Input.GetButtonDown("Jump") && grounded)
 			jump = true;
 
     }
@@ -80,19 +81,6 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.tag == "Ground")
-        {
-            grounded = true;
-            anim.SetBool("Jump", false);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        grounded = false;
-    }
 
     void Flip ()
 	{
