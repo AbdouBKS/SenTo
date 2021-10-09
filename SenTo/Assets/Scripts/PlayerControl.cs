@@ -5,7 +5,6 @@ public class PlayerControl : MonoBehaviour
 {
 	[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
-	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
 
 	[HideInInspector]
@@ -25,20 +24,21 @@ public class PlayerControl : MonoBehaviour
 	void Awake()
 	{
 		// Setting up references.
-		// groundCheck = transform.Find("groundCheck");
+		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 	}
 
 	void Update()
 	{
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        // If the jump button is pressed and the player is grounded then the player should jump.
-        if (Input.GetButtonDown("Jump") && grounded)
-			jump = true;
+		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
+		// If the jump button is pressed and the player is grounded then the player should jump.
+		if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") != 0) && grounded)
+		// if(Input.GetButtonDown("Jump") && grounded)
+			jump = true;
     }
 
-	void FixedUpdate ()
+	void FixedUpdate()
 	{
 		// Cache the horizontal input.
 		float horizontal = Input.GetAxis("Horizontal");
@@ -63,26 +63,28 @@ public class PlayerControl : MonoBehaviour
 			Flip();
 		}
 
-		if (horizontal != 0) {
+		if (horizontal != 0 && grounded) {
 			anim.SetBool("Running", true);
 		} else {
 			anim.SetBool("Running", false);
+		}
+
+		if (grounded) {
+			anim.SetBool("Jump", false);
 		}
 
 		// If the player should jump...
 		if(jump)
 		{
 			// Set the Jump animator trigger parameter.
-			anim.SetTrigger("Jump");
+			anim.SetBool("Jump", true);
 
 			// Add a vertical force to the player.
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
 
-			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}
 	}
-
 
     void Flip ()
 	{
