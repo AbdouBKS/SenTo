@@ -75,7 +75,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6466976208157286471}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e2b4be40f400e0a4b90cb9e5f04894fc, type: 2}
   m_CullingMode: 0
@@ -188,10 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   jump: 0
-  walking: 0
-  moveForce: 10
+  running: 0
   maxSpeed: 10
-  jumpClips: []
   jumpForce: 1300
 --- !u!61 &6466976208157286472
 BoxCollider2D:
