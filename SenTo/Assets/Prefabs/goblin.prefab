@@ -179,9 +179,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8642879991459166701}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: goblin
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8642879991581105813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pos_bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

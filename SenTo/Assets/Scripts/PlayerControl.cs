@@ -71,12 +71,14 @@ public class PlayerControl : MonoBehaviour
 		if (grounded) {
 			anim.SetBool("Jump", false);
 		}
+        else
+            anim.SetBool("Jump", true);
 
-		// If the player should jump...
-		if(jump)
+        // If the player should jump...
+        if (jump)
 		{
 			// Set the Jump animator trigger parameter.
-			anim.SetBool("Jump", true);
+			
 
 			// Add a vertical force to the player.
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Bomb : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5f;
@@ -14,6 +14,11 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D coll)
     {
         collision_bool = true;
+
+        if (coll.transform.tag == "Player")
+        {
+            GameManager.instance.RestartGame(0f);
+        }
     }
 
     // Update is called once per frame

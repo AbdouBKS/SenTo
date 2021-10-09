@@ -29,14 +29,14 @@ public class CameraFollow : MonoBehaviour
         if (Player.transform.position.y > 1)
         {
             if (camera_pos.y < Player.transform.position.y + 0.78f)
-                camera_pos.y += 0.02f;
+                camera_pos.y += 0.03f;
             if (camera_pos.y > 9.7f)
                 camera_pos.y = 9.7f;
         }
         else if (Player.transform.position.y < 3.5f)
         {
             if (camera_pos.y > Player.transform.position.y + 0.78f)
-                camera_pos.y -= 0.02f;
+                camera_pos.y -= 0.07f;
             if (camera_pos.y < -2.82f)
                 camera_pos.y = -2.82f;
         }

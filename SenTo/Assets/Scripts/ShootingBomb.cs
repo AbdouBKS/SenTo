@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ShootingTrap : MonoBehaviour
+public class ShootingBomb : MonoBehaviour
 {
     [SerializeField]
     private GameObject itemToShootPrefab;
@@ -33,6 +33,14 @@ public class ShootingTrap : MonoBehaviour
         var item = (GameObject) Instantiate(itemToShootPrefab, bomb_start_pos, transform.rotation);
         Destroy(item, destroyItemDelay);
         StartCoroutine(ShootObject(shootInterval));
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.transform.tag == "Player")
+        {
+            GameManager.instance.RestartGame(0f);
+        }
     }
 
 }

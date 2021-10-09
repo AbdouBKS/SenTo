@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - goblin
   - bomb
+  - DeathTile
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - enemies
   - enemie_projectiles
   - postprocess
-  - 
+  - Player
   - 
   - 
   - 
