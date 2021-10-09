@@ -33,8 +33,7 @@ public class PlayerControl : MonoBehaviour
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
 		// If the jump button is pressed and the player is grounded then the player should jump.
-		if((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") != 0) && grounded)
-		// if(Input.GetButtonDown("Jump") && grounded)
+		if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
     }
 
@@ -44,7 +43,7 @@ public class PlayerControl : MonoBehaviour
 		float horizontal = Input.GetAxis("Horizontal");
 
 		// // The Speed animator parameter is set to the absolute value of the horizontal input.
-		// anim.SetFloat("Speed", Mathf.Abs(horizontal));
+		anim.SetFloat("Speed", Mathf.Abs(horizontal));
 
 		// // If the player is changing direction (horizontal has a different sign to velocity.x) or hasn't reached maxSpeed yet...
 		// if(horizontal * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
