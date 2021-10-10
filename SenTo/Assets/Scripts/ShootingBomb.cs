@@ -10,9 +10,6 @@ public class ShootingBomb : MonoBehaviour
     private GameObject bombPosObj;
 
     [SerializeField]
-    private float shootStartDelay = 0.1f;
-
-    [SerializeField]
     private float shootInterval = 2f;
 
     [SerializeField]
@@ -26,8 +23,7 @@ public class ShootingBomb : MonoBehaviour
 
     private IEnumerator ShootObject(float delay)
     {
-        yield return new WaitForSeconds(delay + shootStartDelay);
-        shootStartDelay = 0f;
+        yield return new WaitForSeconds(delay);
         Vector3 bomb_start_pos = bombPosObj.transform.position;
 
         var item = (GameObject) Instantiate(itemToShootPrefab, bomb_start_pos, transform.rotation);

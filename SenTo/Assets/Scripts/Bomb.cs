@@ -20,7 +20,7 @@ public class Bomb : MonoBehaviour
     void Update ()
     {
         if (collision_bool == false)
-            transform.position -= transform.right * Time.deltaTime * speed;
+            transform.position += transform.right * Time.deltaTime * speed;
     }
 
 }
