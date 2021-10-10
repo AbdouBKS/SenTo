@@ -16,33 +16,33 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 camera_pos = transform.position;
-
-        camera_pos.x = Player.transform.position.x;
-
-        if (camera_pos.x < (-4.6f))
-            camera_pos.x = -4.6f;
-
-        if (camera_pos.x > 19f)
-            camera_pos.x = 19f;
-
-        if (Player.transform.position.y > 1)
+        if (Player != null)
         {
-            if (camera_pos.y < Player.transform.position.y + 0.78f)
-                camera_pos.y += 0.03f;
-            if (camera_pos.y > 9.7f)
-                camera_pos.y = 9.7f;
+            Vector3 camera_pos = transform.position;
+
+            camera_pos.x = Player.transform.position.x;
+
+            if (camera_pos.x < (-4.6f))
+                camera_pos.x = -4.6f;
+
+            if (camera_pos.x > 19f)
+                camera_pos.x = 19f;
+
+            if (Player.transform.position.y > 1)
+            {
+                if (camera_pos.y < Player.transform.position.y + 0.78f)
+                    camera_pos.y += 0.03f;
+                if (camera_pos.y > 9.7f)
+                    camera_pos.y = 9.7f;
+            }
+            else if (Player.transform.position.y < 3.5f)
+            {
+                if (camera_pos.y > Player.transform.position.y + 0.78f)
+                    camera_pos.y -= 0.07f;
+                if (camera_pos.y < -2.82f)
+                    camera_pos.y = -2.82f;
+            }
+            transform.position = camera_pos;
         }
-        else if (Player.transform.position.y < 3.5f)
-        {
-            if (camera_pos.y > Player.transform.position.y + 0.78f)
-                camera_pos.y -= 0.07f;
-            if (camera_pos.y < -2.82f)
-                camera_pos.y = -2.82f;
-        }
-
-
-
-           transform.position = camera_pos;
     }
 }

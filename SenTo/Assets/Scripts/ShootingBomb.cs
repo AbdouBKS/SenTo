@@ -35,12 +35,4 @@ public class ShootingBomb : MonoBehaviour
         StartCoroutine(ShootObject(shootInterval));
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.transform.tag == "Player")
-        {
-            GameManager.instance.RestartGame(0f);
-        }
-    }
-
 }

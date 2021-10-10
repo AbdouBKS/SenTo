@@ -14,11 +14,6 @@ public class Bomb : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D coll)
     {
         collision_bool = true;
-
-        if (coll.transform.tag == "Player")
-        {
-            GameManager.instance.RestartGame(0f);
-        }
     }
 
     // Update is called once per frame
@@ -27,4 +22,5 @@ public class Bomb : MonoBehaviour
         if (collision_bool == false)
             transform.position -= transform.right * Time.deltaTime * speed;
     }
+
 }

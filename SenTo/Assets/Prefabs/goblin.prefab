@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5620651557632757445}
   - component: {fileID: 1882986120877378057}
   - component: {fileID: 5309590382056808388}
+  - component: {fileID: 7817815737664458095}
   m_Layer: 7
   m_Name: goblin-sprite
   m_TagString: goblin
@@ -170,6 +171,19 @@ MonoBehaviour:
   shootStartDelay: 0
   shootInterval: 1.41
   destroyItemDelay: 1.25
+--- !u!114 &7817815737664458095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878603811031505306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354a9767f94926b4885bb38b80a42edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodSprayPrefab: {fileID: 1813796660315882, guid: fdb4eeee18fc6104e914f576e0971411, type: 3}
 --- !u!1 &8642879991459166700
 GameObject:
   m_ObjectHideFlags: 0
