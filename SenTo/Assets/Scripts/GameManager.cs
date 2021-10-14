@@ -16,9 +16,20 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RestartGameCoroutine(delay));
     }
 
+    public void WinGame(float delay)
+    {
+        StartCoroutine(WinGameCoroutine(delay));
+    }
+
     private IEnumerator RestartGameCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("GameScene");
+    }
+
+    private IEnumerator WinGameCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("WinScene");
     }
 }

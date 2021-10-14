@@ -5,24 +5,32 @@ using System.Collections.Generic;
 
 public class PlayerInventoryDisplay : MonoBehaviour 
 {
-    public Image iconCoin;
-    public Image iconKey;
+    public Text coinText;
+    public Text keyText;
+
+    void Start()
+    {
+        coinText.text = "0";
+        keyText.text = "0";
+    }
 
     public void onChangeInventory(Dictionary<PickUp.PickUpType, int> inventory)
     {
-
         int numItems = inventory.Count;
 
         foreach (var item in inventory)
         {
             int itemTotal = item.Value;
-            float newWidth = 12 * itemTotal;
 
             if (item.Key.ToString() == "Coin")
-                iconCoin.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
-            if (item.Key.ToString() == "Key")
-                iconKey.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
+            {
+                coinText.text = itemTotal.ToString();
+            }
 
+            if (item.Key.ToString() == "Key")
+            {
+                keyText.text = itemTotal.ToString();
+            }
         }
     }
 }

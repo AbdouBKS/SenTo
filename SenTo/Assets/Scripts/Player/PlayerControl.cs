@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour
     public Vector2 savedVelocity;
 
 
-    void Awake()
+    void Start()
 	{
         rb = GetComponent<Rigidbody2D>();
         inventoryManager = GetComponent<InventoryManager>();
@@ -47,6 +47,7 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        Dash();
         horizontal = Input.GetAxis("Horizontal");
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
@@ -63,6 +64,36 @@ public class PlayerControl : MonoBehaviour
         else if (horizontal < 0 && facingRight)
             Flip();
 
+
+
+    }
+
+	void FixedUpdate()
+	{
+        //set run anim
+		if (horizontal != 0 && grounded)
+			anim.SetBool("Running", true);
+        else
+			anim.SetBool("Running", false);
+		
+        
+        //set jump anim
+		if (grounded)
+			anim.SetBool("Jump", false);
+        else
+            anim.SetBool("Jump", true);
+        
+
+        //jump system
+        if (jump)
+		{
+			rb.AddForce(new Vector2(0f, jumpForce));
+			jump = false;
+		}
+    }
+
+    void Dash()
+    {
         //dash
         if (!dashing)
         {
@@ -94,31 +125,6 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
-
-    }
-
-	void FixedUpdate()
-	{
-        //set run anim
-		if (horizontal != 0 && grounded)
-			anim.SetBool("Running", true);
-        else
-			anim.SetBool("Running", false);
-		
-        
-        //set jump anim
-		if (grounded)
-			anim.SetBool("Jump", false);
-        else
-            anim.SetBool("Jump", true);
-        
-
-        //jump system
-        if (jump)
-		{
-			rb.AddForce(new Vector2(0f, jumpForce));
-			jump = false;
-		}
     }
 
     void OnTriggerEnter2D(Collider2D hit)
