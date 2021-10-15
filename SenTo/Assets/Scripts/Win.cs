@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,12 @@ public class Win : MonoBehaviour
         spriteName = GetComponent<SpriteRenderer>().sprite.name;
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D hit)
     {
-        if (coll.transform.tag == "Player" && coll.gameObject != null)
+        spriteName = GetComponent<SpriteRenderer>().sprite.name;
+        if (hit.CompareTag("Player") && string.Equals(spriteName, "Door_1"))
         {
-            Debug.Log("lol");
-            GameManager.instance.WinGame(1f);
+            GameManager.instance.WinGame(0f);
         }
     }
 }
