@@ -75,14 +75,13 @@ public class PlayerControl : MonoBehaviour
 			anim.SetBool("Running", true);
         else
 			anim.SetBool("Running", false);
-		
-        
+
+
         //set jump anim
 		if (grounded)
 			anim.SetBool("Jump", false);
         else
             anim.SetBool("Jump", true);
-        
 
         //jump system
         if (jump)
