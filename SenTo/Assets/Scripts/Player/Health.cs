@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public Image heart;
-    public int health;
+    public static int health;
 
     private void Awake()
     {
