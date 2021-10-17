@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public Image heart;
-    public int health;
+    static int health = 2;
 
-    private void Awake()
+    private void Start()
     {
-        health = 3;
+        float newWidth = health * 100;
+        heart.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
     }
 
     public int newHealth()
