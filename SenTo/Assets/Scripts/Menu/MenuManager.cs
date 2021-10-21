@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -31,6 +29,15 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         moveSelector();
+        Select();
+    }
+
+    void Select()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            objects[selector].GetComponent<IActionButton>().Action();
+        }
     }
 
     void moveSelector()
