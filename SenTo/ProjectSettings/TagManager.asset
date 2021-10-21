@@ -6,6 +6,12 @@ TagManager:
   tags:
   - goblin
   - bomb
+<<<<<<< Updated upstream
+=======
+  - DeathTile
+  - Pickup
+  - Killing
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

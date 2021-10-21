@@ -8,15 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 5103849502464933917}
   - component: {fileID: 5675308559682292187}
   - component: {fileID: 3946940012267340}
   - component: {fileID: 5620651557632757445}
   - component: {fileID: 1882986120877378057}
   - component: {fileID: 5309590382056808388}
+=======
+  - component: {fileID: 6501858452932271514}
+  - component: {fileID: 5921396595567678556}
+  - component: {fileID: 2081151747257899723}
+  - component: {fileID: 5976040360540787522}
+  - component: {fileID: 490342753029265294}
+  - component: {fileID: 6143135937989673539}
+>>>>>>> Stashed changes
   m_Layer: 7
   m_Name: goblin-sprite
-  m_TagString: goblin
+  m_TagString: Killing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,11 +174,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToShootPrefab: {fileID: 4944889209064909910, guid: 7990fd9e3ae4d2d4698f782a5ed6faaf, type: 3}
+<<<<<<< Updated upstream
   bombPosObj: {fileID: 8642879991581105812}
   shootStartDelay: 0
   shootInterval: 1.41
   destroyItemDelay: 1.25
 --- !u!1 &8642879991459166700
+=======
+  bombPosObj: {fileID: 7718629124672701203}
+  shootInterval: 2.41
+  destroyItemDelay: 1.25
+--- !u!1 &7718629124266075243
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +196,11 @@ GameObject:
   - component: {fileID: 8642879991459166701}
   m_Layer: 0
   m_Name: goblin
+<<<<<<< Updated upstream
   m_TagString: Untagged
+=======
+  m_TagString: Killing
+>>>>>>> Stashed changes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
