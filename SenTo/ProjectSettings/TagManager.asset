@@ -18,9 +18,9 @@ TagManager:
   - Water
   - UI
   - Ground
-  - enemies
-  - enemie_projectiles
-  - postprocess
+  - Enemies
+  - Enemie_projectiles
+  - Postprocess
   - Player
   - Collectibles
   - 

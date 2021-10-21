@@ -42,4 +42,15 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerEnter2D(Collider2D hit)
+    {
+        if (hit.CompareTag("Pickup"))
+        {
+            PickUp item = hit.GetComponent<PickUp>();
+            Add(item);
+            Destroy(hit.gameObject);
+        }
+    }
+
 }

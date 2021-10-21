@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3729716116534705439}
   - component: {fileID: 520185150304534755}
   - component: {fileID: 453784357164488010}
-  - component: {fileID: 9048867846743647091}
   m_Layer: 8
   m_Name: bomb
   m_TagString: Killing
@@ -166,16 +165,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &9048867846743647091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4944889209064909910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354a9767f94926b4885bb38b80a42edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloodSprayPrefab: {fileID: 1813796660315882, guid: fdb4eeee18fc6104e914f576e0971411, type: 3}

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerStateList : MonoBehaviour
 {
-
     public bool walking;
     public bool interact;
     public bool interacting;
     public bool lookingRight;
     public bool jumping;
+    public bool dashing;
     public bool recoilingX;
     public bool recoilingY;
     public bool casting;
@@ -18,6 +18,4 @@ public class PlayerStateList : MonoBehaviour
     public bool atBench;
     public bool atNPC;
     public bool usingNPC;
-    //public bool 
-
 }

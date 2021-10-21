@@ -6,73 +6,102 @@ using System.Collections.Generic;
 public class PlayerControl : MonoBehaviour
 {
     [HideInInspector]
-    public bool facingRight = true;         // For determining which way the player is currently facing.
-    private bool jump = false;               // Condition for whether the player should jump.
-    private float xAxis;
+    public PlayerStateList pState;
 
-    public float maxSpeed = 5f;             // The fastest the player can travel in the x axis.
-    public float jumpForce = 1000f;         // Amount of force added when the player jumps.
+    [Header("Movement")]
+    float xAxis;
+    float yAxis;
+    [SerializeField] float walkSpeed = 10f;             // The fastest the player can travel in the x axis.
+    [SerializeField] float jumpForce = 1150;         // Amount of force added when the player jumps.
+    [Space(5)]
 
-    //ground
+    [Header("Ground")]
     [SerializeField] Transform groundTransform; //This is supposed to be a transform childed to the player just under their collider.
     [SerializeField] float groundCheckY = 0.2f; //How far on the Y axis the groundcheck Raycast goes.
     [SerializeField] float groundCheckX = 1;//Same as above but for X.
     [SerializeField] LayerMask groundLayer;
+    [Space(5)]
 
-    //components
+    [Header("Components")]
     private Animator anim;                  // Reference to the player's animator component.
-    private InventoryManager inventoryManager;
     private Rigidbody2D rb;
+    [Space(5)]
 
-    //dash
-    public float dashSpeed;
-    public float startDashTime; //lenght of the dash
-    private float dashTime;
-    private bool dashing = false;
-    private bool canDash = true;
-    public float startDashInterval;
-    private float dashInterval;
-    private Vector2 savedVelocity;
-    private bool dashButtonPressed;
-
+    [Header("Dash")]
+    [SerializeField] float dashSpeed;
+    [SerializeField] float startDashTime; //lenght of the dash
+    float dashTime;
+    [SerializeField] float startDashInterval; //time between dash
+    float dashInterval;
+    Vector2 savedVelocity;
+    bool dashButtonPressed;
+    bool canDash = true;
 
     void Start()
     {
+        if (pState == null)
+        {
+            pState = GetComponent<PlayerStateList>();
+        }
         rb = GetComponent<Rigidbody2D>();
-        inventoryManager = GetComponent<InventoryManager>();
         anim = GetComponent<Animator>();
+
         dashTime = startDashTime;
         dashInterval = startDashInterval;
     }
 
     void Update()
     {
-        Dash();
         GetInputs();
 
-        if (xAxis > 0 && !facingRight)
-            Flip();
-        else if (xAxis < 0 && facingRight)
-            Flip();
+        Flip();
+        Walk();
+        Dash();
+    }
+
+    void Flip()
+    {
+        Vector3 theScale = transform.localScale;
+
+        if (xAxis < 0 && !pState.lookingRight)
+        {
+            pState.lookingRight = !pState.lookingRight;
+
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+        else if (xAxis > 0 && pState.lookingRight)
+        {
+            pState.lookingRight = !pState.lookingRight;
+
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+    }
+
+    void Walk()
+    {
+        anim.SetFloat("Speed", Mathf.Abs(xAxis));
+        rb.velocity = new Vector2(xAxis * walkSpeed, rb.velocity.y);
+
+        if (Mathf.Abs(rb.velocity.x) > 0 && Grounded())
+        {
+            pState.walking = true;
+        }
+        else
+        {
+            pState.walking = false;
+        }
+        anim.SetBool("Running", pState.walking);
     }
 
     void GetInputs()
     {
         xAxis = Input.GetAxis("Horizontal");
-
-        //move
-        anim.SetFloat("Speed", Mathf.Abs(xAxis));
-        rb.velocity = new Vector2(xAxis * maxSpeed, rb.velocity.y);
-
-        if (xAxis != 0 && Grounded())
-            anim.SetBool("Running", true);
-        else
-            anim.SetBool("Running", false);
+        yAxis = Input.GetAxis("Vertical"); ;
 
         if (Input.GetButtonDown("Jump") && Grounded())
-            jump = true;
-
-        //Debug.Log(Input.GetButtonDown("RT"));
+            pState.jumping = true;
 
         dashButtonPressed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("RT");
     }
@@ -93,24 +122,19 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        //set jump anim
-        if (Grounded())
-            anim.SetBool("Jump", false);
-        else
-            anim.SetBool("Jump", true);
+        anim.SetBool("Jump", !Grounded());
 
-        //jump system
-        if (jump)
+        if (pState.jumping)
         {
             rb.AddForce(new Vector2(0f, jumpForce));
-            jump = false;
+            pState.jumping = false;
         }
     }
 
     void Dash()
     {
         //dash
-        if (!dashing)
+        if (!pState.dashing)
         {
             savedVelocity = rb.velocity;
 
@@ -120,14 +144,14 @@ public class PlayerControl : MonoBehaviour
             if (dashButtonPressed && canDash)
             {
                 canDash = false;
-                dashing = true;
+                pState.dashing = true;
             }
         }
         else
         {
             if (dashTime <= 0)
             {
-                dashing = false;
+                pState.dashing = false;
                 dashTime = startDashTime;
                 rb.velocity = savedVelocity;
             }
@@ -135,14 +159,13 @@ public class PlayerControl : MonoBehaviour
             {
                 dashTime -= Time.deltaTime;
 
-
-                if (facingRight)
-                {
-                    rb.AddForce(new Vector2(dashSpeed, 0f));
-                }
-                else if (!facingRight)
+                if (pState.lookingRight)
                 {
                     rb.AddForce(new Vector2(-dashSpeed, 0f));
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(dashSpeed, 0f));
                 }
             }
         }
@@ -151,25 +174,6 @@ public class PlayerControl : MonoBehaviour
             dashInterval = startDashInterval;
             canDash = true;
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D hit)
-    {
-        if (hit.CompareTag("Pickup"))
-        {
-            PickUp item = hit.GetComponent<PickUp>();
-            inventoryManager.Add(item);
-            Destroy(hit.gameObject);
-        }
-    }
-
-    void Flip()
-    {
-        facingRight = !facingRight;
-
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
     }
 
     void OnDrawGizmos()

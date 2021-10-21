@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5976040360540787522}
   - component: {fileID: 490342753029265294}
   - component: {fileID: 6143135937989673539}
-  - component: {fileID: 8111488955052904680}
   m_Layer: 7
   m_Name: goblin-sprite
   m_TagString: Killing
@@ -170,19 +169,6 @@ MonoBehaviour:
   bombPosObj: {fileID: 7718629124672701203}
   shootInterval: 2.41
   destroyItemDelay: 1.25
---- !u!114 &8111488955052904680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503732396875990045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354a9767f94926b4885bb38b80a42edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloodSprayPrefab: {fileID: 1813796660315882, guid: fdb4eeee18fc6104e914f576e0971411, type: 3}
 --- !u!1 &7718629124266075243
 GameObject:
   m_ObjectHideFlags: 0
