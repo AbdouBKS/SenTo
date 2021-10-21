@@ -9,6 +9,7 @@ TagManager:
   - bomb
   - DeathTile
   - Pickup
+  - Killing
   layers:
   - Default
   - TransparentFX

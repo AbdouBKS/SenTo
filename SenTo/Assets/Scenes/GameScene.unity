@@ -636,28 +636,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6f7710791ebe341973667e2c98ada1, type: 3}
---- !u!1 &333316758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6286419274264636944, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
-  m_PrefabInstance: {fileID: 987100867}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &333316759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286419274264636959, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
   m_PrefabInstance: {fileID: 987100867}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &333316760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333316758}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428558d856042a441b56ab583ce27a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &396513556
 GameObject:
   m_ObjectHideFlags: 3
@@ -49424,28 +49407,11 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!1 &849909104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6286419274264636944, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
-  m_PrefabInstance: {fileID: 1700166571}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &849909105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286419274264636959, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
   m_PrefabInstance: {fileID: 1700166571}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &849909106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849909104}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428558d856042a441b56ab583ce27a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &867084568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49852,23 +49818,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6286419274264636959, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
   m_PrefabInstance: {fileID: 1051273128}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1051273130 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6286419274264636944, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
-  m_PrefabInstance: {fileID: 1051273128}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1051273131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051273130}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428558d856042a441b56ab583ce27a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1060092176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50671,10 +50620,9 @@ GameObject:
   - component: {fileID: 1690284424}
   - component: {fileID: 1690284423}
   - component: {fileID: 1690284426}
-  - component: {fileID: 1690284427}
   m_Layer: 0
   m_Name: DeathTiles
-  m_TagString: DeathTile
+  m_TagString: Killing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54879,19 +54827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSprayPrefab: {fileID: 1813796660315882, guid: fdb4eeee18fc6104e914f576e0971411, type: 3}
---- !u!114 &1690284427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690284419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32c79d8ddbfbedc4784972547f99e7da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heart: {fileID: 565658900}
 --- !u!4 &1695391088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7187206781582688817, guid: 7d6f7710791ebe341973667e2c98ada1, type: 3}
@@ -54963,28 +54898,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7187206781582688817, guid: 7d6f7710791ebe341973667e2c98ada1, type: 3}
   m_PrefabInstance: {fileID: 412123451}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1732583748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6286419274264636944, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
-  m_PrefabInstance: {fileID: 237153685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1732583753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6286419274264636959, guid: 84dbb7ba316a4fb408b68ccf75fa31eb, type: 3}
   m_PrefabInstance: {fileID: 237153685}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1732583754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732583748}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428558d856042a441b56ab583ce27a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1754564211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55470,6 +55388,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4547965776677315585, guid: 9465be282518efc45935aaa20328143d, type: 3}
+      propertyPath: dashSpeed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547965776677315585, guid: 9465be282518efc45935aaa20328143d, type: 3}
+      propertyPath: startDashInterval
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 4547965776677315596, guid: 9465be282518efc45935aaa20328143d, type: 3}
       propertyPath: m_RootOrder
       value: 1

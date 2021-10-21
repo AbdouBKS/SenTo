@@ -5,45 +5,44 @@ using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour
 {
-	[HideInInspector]
-	public bool facingRight = true;			// For determining which way the player is currently facing.
-	public bool jump = false;				// Condition for whether the player should jump.
+    [HideInInspector]
+    public bool facingRight = true;         // For determining which way the player is currently facing.
+    public bool jump = false;               // Condition for whether the player should jump.
+    private float horizontal;
 
-	[HideInInspector]
-	public bool running = false;				// Condition for whether the player should jump.
+    public float maxSpeed = 5f;             // The fastest the player can travel in the x axis.
+    public float jumpForce = 1000f;         // Amount of force added when the player jumps.
 
-	// public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
-	// public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
-	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
+    //ground
+    private Transform groundCheck;          // A position marking where to check if the player is grounded.
+    private bool grounded = false;          // Whether or not the player is grounded.
 
-
-	private Transform groundCheck;			// A position marking where to check if the player is grounded.
-	private bool grounded = false;			// Whether or not the player is grounded.
-	private Animator anim;                  // Reference to the player's animator component.
+    //components
+    private Animator anim;                  // Reference to the player's animator component.
     private InventoryManager inventoryManager;
-
     private Rigidbody2D rb;
 
     //dash
     public float dashSpeed;
+    public float startDashTime; //lenght of the dash
     private float dashTime;
-    public float startDashTime;
-    private bool dashing;
-    private float horizontal;
+    private bool dashing = false;
+    private bool canDash = true;
+    public float startDashInterval;
+    private float dashInterval;
     public Vector2 savedVelocity;
 
 
     void Start()
-	{
+    {
         rb = GetComponent<Rigidbody2D>();
         inventoryManager = GetComponent<InventoryManager>();
-        groundCheck = transform.Find("groundCheck");
-		anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 
-        dashing = false;
+        groundCheck = transform.Find("groundCheck");
         dashTime = startDashTime;
-	}
+        dashInterval = startDashInterval;
+    }
 
     void Update()
     {
@@ -63,32 +62,29 @@ public class PlayerControl : MonoBehaviour
             Flip();
         else if (horizontal < 0 && facingRight)
             Flip();
-
-
-
     }
 
-	void FixedUpdate()
-	{
+    void FixedUpdate()
+    {
         //set run anim
-		if (horizontal != 0 && grounded)
-			anim.SetBool("Running", true);
+        if (horizontal != 0 && grounded)
+            anim.SetBool("Running", true);
         else
-			anim.SetBool("Running", false);
+            anim.SetBool("Running", false);
 
 
         //set jump anim
-		if (grounded)
-			anim.SetBool("Jump", false);
+        if (grounded)
+            anim.SetBool("Jump", false);
         else
             anim.SetBool("Jump", true);
 
         //jump system
         if (jump)
-		{
-			rb.AddForce(new Vector2(0f, jumpForce));
-			jump = false;
-		}
+        {
+            rb.AddForce(new Vector2(0f, jumpForce));
+            jump = false;
+        }
     }
 
     void Dash()
@@ -98,8 +94,14 @@ public class PlayerControl : MonoBehaviour
         {
             savedVelocity = rb.velocity;
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (dashInterval > 0)
+                dashInterval -= Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                canDash = false;
                 dashing = true;
+            }
         }
         else
         {
@@ -124,6 +126,11 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+        if (grounded && dashInterval <= 0)
+        {
+            dashInterval = startDashInterval;
+            canDash = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D hit)
@@ -137,13 +144,13 @@ public class PlayerControl : MonoBehaviour
     }
 
     void Flip()
-	{
-		// Switch the way the player is labelled as facing.
-		facingRight = !facingRight;
+    {
+        // Switch the way the player is labelled as facing.
+        facingRight = !facingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
 }
