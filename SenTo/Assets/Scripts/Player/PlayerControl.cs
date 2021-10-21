@@ -87,6 +87,15 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    private bool DashButtonPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) /*|| Input.GetKeyDown("joystick button 0") */) {
+            return true;
+        }
+        return false;
+    }
+
+
     void Dash()
     {
         //dash
@@ -97,7 +106,7 @@ public class PlayerControl : MonoBehaviour
             if (dashInterval > 0)
                 dashInterval -= Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            if (DashButtonPressed() && canDash)
             {
                 canDash = false;
                 dashing = true;

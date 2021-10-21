@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &15031227
 Transform:
   m_ObjectHideFlags: 0
@@ -1455,7 +1455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572671975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.51, y: -2.3309002, z: -10}
+  m_LocalPosition: {x: 32.1, y: 4.4691, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50619,7 +50619,6 @@ GameObject:
   - component: {fileID: 1690284425}
   - component: {fileID: 1690284424}
   - component: {fileID: 1690284423}
-  - component: {fileID: 1690284426}
   m_Layer: 0
   m_Name: DeathTiles
   m_TagString: Killing
@@ -54814,19 +54813,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &1690284426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690284419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354a9767f94926b4885bb38b80a42edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloodSprayPrefab: {fileID: 1813796660315882, guid: fdb4eeee18fc6104e914f576e0971411, type: 3}
 --- !u!4 &1695391088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7187206781582688817, guid: 7d6f7710791ebe341973667e2c98ada1, type: 3}
@@ -54975,7 +54961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1755854441
 Transform:
   m_ObjectHideFlags: 0
@@ -55060,7 +55046,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864912755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.51, y: -2.3309002, z: -10}
+  m_LocalPosition: {x: 32.1, y: 4.4691, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 396513557}
@@ -55381,6 +55367,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4547965776677315599, guid: 9465be282518efc45935aaa20328143d, type: 3}
   m_PrefabInstance: {fileID: 2659863776770283568}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2014273159425850440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014273159425850431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354a9767f94926b4885bb38b80a42edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodSprayPrefab: {fileID: 1813796660315882, guid: fdb4eeee18fc6104e914f576e0971411, type: 3}
+--- !u!114 &2014273159425850441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014273159425850431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c79d8ddbfbedc4784972547f99e7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heart: {fileID: 565658900}
 --- !u!1001 &2659863776770283568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55402,11 +55414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547965776677315596, guid: 9465be282518efc45935aaa20328143d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.51
+      value: 32.1
       objectReference: {fileID: 0}
     - target: {fileID: 4547965776677315596, guid: 9465be282518efc45935aaa20328143d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.17
+      value: 3.63
       objectReference: {fileID: 0}
     - target: {fileID: 4547965776677315596, guid: 9465be282518efc45935aaa20328143d, type: 3}
       propertyPath: m_LocalPosition.z
