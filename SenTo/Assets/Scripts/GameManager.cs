@@ -11,25 +11,14 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void RestartGame(float delay)
+    public void goScene(string sceneName, float delay)
     {
-        StartCoroutine(RestartGameCoroutine(delay));
+        StartCoroutine(sceneCoroutine(sceneName, delay));
     }
 
-    public void WinGame(float delay)
-    {
-        StartCoroutine(WinGameCoroutine(delay));
-    }
-
-    private IEnumerator RestartGameCoroutine(float delay)
+    private IEnumerator sceneCoroutine(string sceneName, float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("GameScene");
-    }
-
-    private IEnumerator WinGameCoroutine(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("WinScene");
+        SceneManager.LoadScene(sceneName);
     }
 }

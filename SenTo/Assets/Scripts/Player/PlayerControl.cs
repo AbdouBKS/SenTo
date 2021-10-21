@@ -7,15 +7,17 @@ public class PlayerControl : MonoBehaviour
 {
     [HideInInspector]
     public bool facingRight = true;         // For determining which way the player is currently facing.
-    public bool jump = false;               // Condition for whether the player should jump.
-    private float horizontal;
+    private bool jump = false;               // Condition for whether the player should jump.
+    private float xAxis;
 
     public float maxSpeed = 5f;             // The fastest the player can travel in the x axis.
     public float jumpForce = 1000f;         // Amount of force added when the player jumps.
 
     //ground
-    private Transform groundCheck;          // A position marking where to check if the player is grounded.
-    private bool grounded = false;          // Whether or not the player is grounded.
+    [SerializeField] Transform groundTransform; //This is supposed to be a transform childed to the player just under their collider.
+    [SerializeField] float groundCheckY = 0.2f; //How far on the Y axis the groundcheck Raycast goes.
+    [SerializeField] float groundCheckX = 1;//Same as above but for X.
+    [SerializeField] LayerMask groundLayer;
 
     //components
     private Animator anim;                  // Reference to the player's animator component.
@@ -30,7 +32,8 @@ public class PlayerControl : MonoBehaviour
     private bool canDash = true;
     public float startDashInterval;
     private float dashInterval;
-    public Vector2 savedVelocity;
+    private Vector2 savedVelocity;
+    private bool dashButtonPressed;
 
 
     void Start()
@@ -38,8 +41,6 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         inventoryManager = GetComponent<InventoryManager>();
         anim = GetComponent<Animator>();
-
-        groundCheck = transform.Find("groundCheck");
         dashTime = startDashTime;
         dashInterval = startDashInterval;
     }
@@ -47,34 +48,53 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         Dash();
-        horizontal = Input.GetAxis("Horizontal");
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        GetInputs();
 
-        if (Input.GetButtonDown("Jump") && grounded)
-            jump = true;
-
-        //move
-        anim.SetFloat("Speed", Mathf.Abs(horizontal));
-        rb.velocity = new Vector2(horizontal * maxSpeed, rb.velocity.y);
-
-        //flip
-        if (horizontal > 0 && !facingRight)
+        if (xAxis > 0 && !facingRight)
             Flip();
-        else if (horizontal < 0 && facingRight)
+        else if (xAxis < 0 && facingRight)
             Flip();
     }
 
-    void FixedUpdate()
+    void GetInputs()
     {
-        //set run anim
-        if (horizontal != 0 && grounded)
+        xAxis = Input.GetAxis("Horizontal");
+
+        //move
+        anim.SetFloat("Speed", Mathf.Abs(xAxis));
+        rb.velocity = new Vector2(xAxis * maxSpeed, rb.velocity.y);
+
+        if (xAxis != 0 && Grounded())
             anim.SetBool("Running", true);
         else
             anim.SetBool("Running", false);
 
+        if (Input.GetButtonDown("Jump") && Grounded())
+            jump = true;
 
+        //Debug.Log(Input.GetButtonDown("RT"));
+
+        dashButtonPressed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("RT");
+    }
+
+    public bool Grounded()
+    {
+        if (Physics2D.Linecast(transform.position, groundTransform.position, groundLayer)
+            || Physics2D.Linecast(transform.position, groundTransform.position + new Vector3(-groundCheckX, 0), groundLayer)
+            || Physics2D.Linecast(transform.position, groundTransform.position + new Vector3(groundCheckX, 0), groundLayer))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void FixedUpdate()
+    {
         //set jump anim
-        if (grounded)
+        if (Grounded())
             anim.SetBool("Jump", false);
         else
             anim.SetBool("Jump", true);
@@ -87,15 +107,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private bool DashButtonPressed()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift) /*|| Input.GetKeyDown("joystick button 0") */) {
-            return true;
-        }
-        return false;
-    }
-
-
     void Dash()
     {
         //dash
@@ -106,7 +117,7 @@ public class PlayerControl : MonoBehaviour
             if (dashInterval > 0)
                 dashInterval -= Time.deltaTime;
 
-            if (DashButtonPressed() && canDash)
+            if (dashButtonPressed && canDash)
             {
                 canDash = false;
                 dashing = true;
@@ -135,7 +146,7 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
-        if (grounded && dashInterval <= 0)
+        if (Grounded() && dashInterval <= 0)
         {
             dashInterval = startDashInterval;
             canDash = true;
@@ -154,12 +165,19 @@ public class PlayerControl : MonoBehaviour
 
     void Flip()
     {
-        // Switch the way the player is labelled as facing.
         facingRight = !facingRight;
 
-        // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawLine(groundTransform.position, groundTransform.position + new Vector3(0, -groundCheckY));
+        Gizmos.DrawLine(groundTransform.position + new Vector3(-groundCheckX, 0), groundTransform.position + new Vector3(-groundCheckX, -groundCheckY));
+        Gizmos.DrawLine(groundTransform.position + new Vector3(groundCheckX, 0), groundTransform.position + new Vector3(groundCheckX, -groundCheckY));
     }
 }

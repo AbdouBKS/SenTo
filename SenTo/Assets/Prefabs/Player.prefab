@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7395700442422641252}
   - component: {fileID: 7395700442422641253}
   - component: {fileID: 7262900960166191273}
+  - component: {fileID: 7652349410911723624}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -144,11 +145,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   jump: 0
-  running: 0
   maxSpeed: 10
   jumpForce: 1150
+  groundTransform: {fileID: 8287526048150023536}
+  groundCheckY: 0.2
+  groundCheckX: 0.75
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   dashSpeed: 500
   startDashTime: 0.1
+  startDashInterval: 0.75
   savedVelocity: {x: 0, y: 0}
 --- !u!61 &4547965776677315584
 BoxCollider2D:
@@ -157,7 +164,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4547965776677315599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -211,7 +218,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4547965776677315599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -220,6 +227,22 @@ CircleCollider2D:
   m_Offset: {x: 0.05, y: -0.09}
   serializedVersion: 2
   m_Radius: 0.14
+--- !u!70 &7652349410911723624
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547965776677315599}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.054511346, y: -0.014990675}
+  m_Size: {x: 0.254511, y: 0.42731255}
+  m_Direction: 0
 --- !u!1 &6250959265943019223
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8287526048150023536}
   m_Layer: 10
-  m_Name: groundCheck
+  m_Name: groundTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6250959265943019223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.259, z: 0}
+  m_LocalPosition: {x: 0.055, y: -0.244, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4547965776677315596}

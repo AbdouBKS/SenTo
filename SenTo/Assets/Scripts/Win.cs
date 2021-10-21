@@ -18,7 +18,7 @@ public class Win : MonoBehaviour
         spriteName = GetComponent<SpriteRenderer>().sprite.name;
         if (hit.CompareTag("Player") && string.Equals(spriteName, "Door_1"))
         {
-            GameManager.instance.WinGame(0f);
+            GameManager.instance.goScene("WinScene", 0f);
         }
     }
 }

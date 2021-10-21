@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    private Health health;
     public GameObject bloodSprayPrefab;
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -12,9 +11,14 @@ public class Death : MonoBehaviour
         if (coll.transform.tag == "Killing" && this.gameObject != null)
         {
             PlayerVariables.health -= 1;
-            Debug.Log(PlayerVariables.health);
-            GameManager.instance.RestartGame(1f);
             StartCoroutine(SprayBlood(1f, coll.contacts[0].point, this.gameObject));
+
+            if (PlayerVariables.health <= 0)
+            {
+                GameManager.instance.goScene("GameOverScene", 1f);
+            }
+            else
+                GameManager.instance.goScene("GameScene", 1f);
 
         }
     }

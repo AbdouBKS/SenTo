@@ -10,7 +10,8 @@ public class GamepadController : MonoBehaviour
         stickUpLast = false;
     }
 
-    public float GetDirectionPressed(string direction) {
+    public float GetDirectionPressed(string direction)
+    {
         float dir = Input.GetAxisRaw(direction);
         float result = 0;
 
