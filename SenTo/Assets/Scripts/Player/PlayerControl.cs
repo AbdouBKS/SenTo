@@ -53,10 +53,16 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         GetInputs();
+    }
+
+    void FixedUpdate()
+    {
+        anim.SetBool("Jump", !Grounded());
 
         Flip();
         Walk();
         Dash();
+        Jump();
     }
 
     void Flip()
@@ -103,7 +109,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump") && Grounded())
             pState.jumping = true;
 
-        dashButtonPressed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("RT");
+        dashButtonPressed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw("RT") == 1;
     }
 
     public bool Grounded()
@@ -120,12 +126,11 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Jump()
     {
-        anim.SetBool("Jump", !Grounded());
-
         if (pState.jumping)
         {
+            rb.AddForce(new Vector2(0f, jumpForce * Time.deltaTime));
             rb.AddForce(new Vector2(0f, jumpForce));
             pState.jumping = false;
         }
@@ -133,6 +138,11 @@ public class PlayerControl : MonoBehaviour
 
     void Dash()
     {
+        if (Grounded() && dashInterval <= 0)
+        {
+            dashInterval = startDashInterval;
+            canDash = true;
+        }
         //dash
         if (!pState.dashing)
         {
@@ -168,11 +178,6 @@ public class PlayerControl : MonoBehaviour
                     rb.AddForce(new Vector2(dashSpeed, 0f));
                 }
             }
-        }
-        if (Grounded() && dashInterval <= 0)
-        {
-            dashInterval = startDashInterval;
-            canDash = true;
         }
     }
 

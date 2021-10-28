@@ -55424,6 +55424,10 @@ PrefabInstance:
       propertyPath: heart
       value: 
       objectReference: {fileID: 565658900}
+    - target: {fileID: 6336007140642758758, guid: da6fcef0bc60b7f40bd26bc0bcbb20e6, type: 3}
+      propertyPath: dashSpeed
+      value: 1300
+      objectReference: {fileID: 0}
     - target: {fileID: 6336007140642758760, guid: da6fcef0bc60b7f40bd26bc0bcbb20e6, type: 3}
       propertyPath: m_Name
       value: Player
